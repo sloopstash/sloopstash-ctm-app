@@ -65,7 +65,7 @@ async function main() {
     console.log('Connected the client to the server.');
     await mongo_db_client.db('admin').command({ ping: 1 });
     console.log('Establish and verified connection.');
-    app.listen(80,'0.0.0.0');
+    app.listen(2000,'0.0.0.0');
     console.log('Started HTTP listener.');
   } catch(error) {
     console.log(error);
