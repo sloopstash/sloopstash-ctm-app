@@ -6,7 +6,7 @@ const app = express();
 /* Add request body parser.*/
 app.use(express.json());
 /* Initiate MongoDB connection.*/
-const mongo_db_client = new MongoClient("mongodb://mongo-db:27017",{useUnifiedTopology:true});
+const mongo_db_client = new MongoClient("mongodb://mongo-db:7000",{useUnifiedTopology:true});
 /* Health check.*/
 app.get('/health',function (req,res) {
   res.send('Healthy.');
