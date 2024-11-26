@@ -1,0 +1,71 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f7f7f7;
+$card-shadow: rgba(0, 0, 0, 0.1);
+
+.create-contact-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.contact-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 4px 6px $card-shadow;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+
+    &.btn-primary {
+      background-color: $primary-color;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+
+    &.btn-secondary {
+      background-color: $secondary-color;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+      }
+    }
+  }
+}
