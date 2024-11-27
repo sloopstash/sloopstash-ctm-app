@@ -1,0 +1,110 @@
+// Variables for reusable values
+$primary-bg-color: #343a40;
+$hover-bg-color: #495057;
+$text-color: #bbb;
+$hover-text-color: white;
+$header-bg-color: #f8f9fa;
+$header-shadow-color: gray;
+$primary-link-color: #007bff;
+$content-heading-color: #343a40;
+$content-text-color: #6c757d;
+
+// Basic reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Full height layout
+body,
+html {
+  height: 100%;
+}
+
+// Dashboard container
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+// Sidebar
+.sidebar {
+  width: 250px;
+  background-color: $primary-bg-color;
+  color: $hover-text-color;
+  padding-top: 30px;
+  position: fixed;
+  height: 100%;
+
+  &-header {
+    h3 {
+      text-align: center;
+      color: $hover-text-color;
+      margin-bottom: 20px;
+    }
+  }
+
+  .list-group-item {
+    background-color: $primary-bg-color;
+    border: none;
+    color: $text-color;
+
+    &:hover {
+      background-color: $hover-bg-color;
+    }
+  }
+
+  .sidebar-link {
+    color: $text-color;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+
+    &:hover {
+      background-color: $hover-bg-color;
+      color: $hover-text-color;
+    }
+  }
+}
+
+// Main content
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: 100%;
+}
+
+// Header
+.header {
+  background-color: $header-bg-color;
+  padding: 10px 20px;
+  box-shadow: 0 4px 2px -2px $header-shadow-color;
+
+  .navbar-nav {
+    margin-left: auto;
+
+    .nav-link {
+      color: $content-heading-color !important;
+
+      &:hover {
+        color: $primary-link-color;
+      }
+    }
+  }
+}
+
+// Content
+.content {
+  margin-top: 20px;
+
+  h2 {
+    font-size: 2rem;
+    color: $content-heading-color;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: $content-text-color;
+  }
+}
