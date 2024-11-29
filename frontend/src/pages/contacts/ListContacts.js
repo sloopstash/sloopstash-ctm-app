@@ -1,18 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useContacts } from '../../context/ContactsContext'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/listContacts.scss';
+import Alert from '../../utils/alert';
 
 const ListContacts = () => {
   const navigate = useNavigate();
-  const { contacts, errorMessage, fetchContacts, handleDeleteContact } = useContacts();
+  const { contacts = [], errorMessage, successMessage, fetchContacts, handleDeleteContact } = useContacts();
+  const [showAlert, setShowAlert] = useState(true);
 
   useEffect(() => {
     fetchContacts();
   }, [fetchContacts]);
-  
+
+  const confirmDelete = (contactId) => {
+    const isConfirmed = window.confirm('Are you sure you want to delete this contact?');
+    if (isConfirmed) {
+      handleDeleteContact(contactId);
+    }
+  };
+
   return (
     <div className="container my-5">
       <div className="row mb-4">
@@ -20,6 +29,24 @@ const ListContacts = () => {
           <h2>Contact List</h2>
         </div>
       </div>
+
+      {/* Display Success Alert */}
+      {successMessage && showAlert && (
+        <Alert
+          message={successMessage}
+          type="success"
+          onClose={() => setShowAlert(false)} 
+        />
+      )}
+
+      {/* Display Error Alert */}
+      {errorMessage && showAlert && (
+        <Alert
+          message={errorMessage}
+          type="danger"
+          onClose={() => setShowAlert(false)} 
+        />
+      )}
 
       <div className="row mb-4">
         <div className="col-md-6">
@@ -30,15 +57,13 @@ const ListContacts = () => {
             Create Contact
           </button>
           <button
-            onClick={() => navigate(-1)}  // Navigate to the previous page in history
+            onClick={() => navigate(-1)}  // Navigate to the previous page
             className="btn btn-outline-secondary btn-sm"
           >
             Go Back
           </button>
         </div>
       </div>
-
-      {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 
       <div className="table-responsive mt-4">
         <table className="table table-striped table-bordered table-hover">
@@ -64,7 +89,7 @@ const ListContacts = () => {
                     </button>
                     <button
                       className="btn btn-sm btn-outline-danger"
-                      onClick={() => handleDeleteContact(contact._id)}
+                      onClick={() => confirmDelete(contact._id)}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </button>

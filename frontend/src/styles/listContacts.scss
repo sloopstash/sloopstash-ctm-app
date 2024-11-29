@@ -47,7 +47,7 @@
   
   /* Alert styles */
   .alert {
-    &.alert-danger {
+    &.alert-primary {
       text-align: center;
     }
   }
@@ -90,3 +90,7 @@
     }
   }
   
+.alert {
+  margin-top: 20px;
+  z-index: 1050;
+}

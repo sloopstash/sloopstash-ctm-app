@@ -1,5 +1,5 @@
 export const CONTACTS = {
-  NOT_FOUND: 'Contacts not found. Please check the server or endpoint.',
+  NOT_FOUND: 'No contacts found. Please create a contact to get started.',
   NETWORK_ERROR: 'Network error or unknown issue while fetching contacts.',
   SERVER_ERROR: 'Internal server error while fetching contacts. Please try again later.',
   CREATE_ERROR: 'Failed to create contact.',
