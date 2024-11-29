@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContacts } from '../../context/ContactsContext';
-import { validateName, validatePhone } from '../../utils/validation'; 
 import '../../styles/createContact.scss'; 
 
 const ContactForm = () => {
   const { id } = useParams(); 
   const [contact, setContact] = useState({ name: '', phone: '' });
   const [isSubmitting, setIsSubmitting] = useState(false); 
-  const [error, setError] = useState({ name: '', phone: '' }); 
   const { handleCreateContact, handleUpdateContact, contacts, successMessage, errorMessage } = useContacts();
   const navigate = useNavigate();
 
@@ -26,38 +24,15 @@ const ContactForm = () => {
     console.log('Error Message:', errorMessage);
   }, [successMessage, errorMessage]);
 
-  const validateForm = () => {
-    let formValid = true;
-    const newError = { name: '', phone: '' };
-    const nameError = validateName(contact.name);
-    if (nameError) {
-      newError.name = nameError;
-      formValid = false;
-    }
-    const phoneError = validatePhone(contact.phone);
-    if (phoneError) {
-      newError.phone = phoneError;
-      formValid = false;
-    }
-    setError(newError);
-    return formValid;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) {
-      return;
-    }
     setIsSubmitting(true); 
     try {
       if (id) {
-        // Updating existing contact
-        await handleUpdateContact(id, contact);
+        await handleUpdateContact(id, contact);  // Update the contact
       } else {
-        // Creating new contact
-        await handleCreateContact(contact);
+        await handleCreateContact(contact);  // Create new contact
       }
-
       setTimeout(() => {
         setIsSubmitting(false);  
         navigate('/dashboard/contacts'); 
@@ -81,8 +56,8 @@ const ContactForm = () => {
               value={contact.name}
               className="form-control"
               onChange={(e) => setContact({ ...contact, name: e.target.value })}
+              required
             />
-            {error.name && <div className="error-message">{error.name}</div>}
           </div>
           <div className="form-group">
             <label htmlFor="phone">Phone</label>
@@ -92,20 +67,21 @@ const ContactForm = () => {
               value={contact.phone}
               className="form-control"
               onChange={(e) => setContact({ ...contact, phone: e.target.value })}
+              required
             />
-            {error.phone && <div className="error-message">{error.phone}</div>}
           </div>
           <button
-            type="submit"
+            onClick={() => navigate('/dashboard/create-contact')}
             className="btn btn-outline-primary me-2"
             disabled={isSubmitting}
+
           >
-            {isSubmitting ? 'Submitting...' : (id ? 'Update Contact' : 'Create Contact')}
+            {isSubmitting ? 'Submitting...' : (id ? 'Update ' : 'Submit')}
           </button>
 
           <button
             type="button"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate(-1)}              
             className="btn btn-outline-secondary"
           >
             Go Back

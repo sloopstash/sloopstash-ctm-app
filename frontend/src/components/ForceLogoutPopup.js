@@ -10,7 +10,6 @@ const ForceLogoutPopup = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if token is expired and show modal if necessary
     if (isTokenExpired && location.pathname !== '/login') {
       setShowModal(true);
     } else if (location.pathname === '/login') {
@@ -19,29 +18,27 @@ const ForceLogoutPopup = () => {
   }, [isTokenExpired, location.pathname]);
 
   const handleLogout = () => {
-    logout();  // Logout user and clear session
-    navigate('/login'); // Navigate to the login page
+    logout();
+    navigate('/login');
   };
 
   return (
-    <>
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Session Expired</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Your session has expired. Please log in again to continue.</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleLogout}>
-            Logout
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+    <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>Session Expired</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>Your session has expired. Please log in again.</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setShowModal(false)}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handleLogout}>
+          Logout
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 

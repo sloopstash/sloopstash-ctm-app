@@ -2,7 +2,6 @@ $primary-color: #007bff;
 $secondary-color: #6c757d;
 $background-color: #f7f7f7;
 $card-shadow: rgba(0, 0, 0, 0.1);
-$validation-color: #FF0000;
 
 .create-contact-page {
   height: 100vh;
@@ -69,8 +68,4 @@ $validation-color: #FF0000;
       }
     }
   }
-}
-.error-message {
-  color: $validation-color;
-  font-size: 0.9rem;
 }

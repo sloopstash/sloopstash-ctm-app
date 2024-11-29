@@ -30,10 +30,10 @@ export const ContactsProvider = ({ children }) => {
       const response = await createContact(contactData);
       setSuccessMessage(response.message);  
       await fetchContacts(); 
-      setTimeout(() => setSuccessMessage(''), 2000);
+      setTimeout(() => setSuccessMessage(''), 3000);
     } catch (error) {
       setErrorMessage(error.message || 'Error creating contact.');
-      setTimeout(() => setErrorMessage(''), 2000);  
+      setTimeout(() => setErrorMessage(''), 3000);  
     }
   };
 
@@ -43,10 +43,10 @@ export const ContactsProvider = ({ children }) => {
       setSuccessMessage(response.message); 
       await fetchContacts();  
 
-      setTimeout(() => setSuccessMessage(''), 2000);
+      setTimeout(() => setSuccessMessage(''), 3000);
     } catch (error) {
       setErrorMessage(error.message || 'Error updating contact.');
-      setTimeout(() => setErrorMessage(''), 2000); 
+      setTimeout(() => setErrorMessage(''), 3000); 
     }
   };
 
@@ -56,10 +56,10 @@ export const ContactsProvider = ({ children }) => {
       await deleteContact(contactId);
       setContacts(contacts.filter((contact) => contact._id !== contactId));
       setSuccessMessage('Contact deleted successfully.');
-      setTimeout(() => setSuccessMessage(''), 2000); 
+      setTimeout(() => setSuccessMessage(''), 3000); 
     } catch (error) {
       setErrorMessage(error.message || 'Error deleting contact.');
-      setTimeout(() => setErrorMessage(''), 2000); 
+      setTimeout(() => setErrorMessage(''), 3000); 
     }
   };
 

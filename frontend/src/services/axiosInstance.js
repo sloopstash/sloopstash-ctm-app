@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_ERRORS } from '../utils/messages'; 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:8081/api',
+  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:2000/api',
   headers: {
     'Content-Type': 'application/json',
   },
