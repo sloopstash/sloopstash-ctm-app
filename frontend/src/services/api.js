@@ -4,10 +4,10 @@ import axiosInstance from './axiosInstance';
 export const apiPost = async (endpoint, data) => {
   try {
     const response = await axiosInstance.post(endpoint, data);
-    return response.data;  // Return the response data
+    return response.data;  
   } catch (error) {
     console.error('API POST error:', error.response || error.message);
-    throw error;  // Rethrow the error for further handling
+    throw error;  
   }
 };
 
@@ -15,10 +15,10 @@ export const apiPost = async (endpoint, data) => {
 export const apiGet = async (endpoint) => {
   try {
     const response = await axiosInstance.get(endpoint);
-    return response.data;  // Return the response data
+    return response.data;
   } catch (error) {
     console.error('API GET error:', error.response || error.message);
-    throw error;  // Rethrow the error for further handling
+    throw error; 
   }
 };
 
@@ -26,10 +26,10 @@ export const apiGet = async (endpoint) => {
 export const apiPut = async (endpoint, data) => {
   try {
     const response = await axiosInstance.put(endpoint, data);
-    return response.data;  // Return the data from the response
+    return response.data;  
   } catch (error) {
     console.error('API PUT error:', error.response || error.message);
-    throw error;  // Rethrow the error for further handling
+    throw error;
   }
 };
 
@@ -37,9 +37,9 @@ export const apiPut = async (endpoint, data) => {
 export const apiDelete = async (endpoint) => {
   try {
     const response = await axiosInstance.delete(endpoint);
-    return response.data;  // Return the data from the response
+    return response.data; 
   } catch (error) {
     console.error('API DELETE error:', error.response || error.message);
-    throw error;  // Rethrow the error for further handling
+    throw error;
   }
 };

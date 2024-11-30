@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LogoComponent from '../../components/layout/Logo';
+import '../../styles/sidebar.scss';
 
-// Use React.memo to prevent unnecessary re-renders
 const Sidebar = React.memo(() => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <h3 className="text-center">Dashboard</h3>
+        <div className="logo-container text-center">
+          <LogoComponent width="120px" height="120px" />
+        </div>
       </div>
-      <ul className="list-group">
-        <li className="list-group-item">
+      <ul className="sidebar-menu">
+        <li className="sidebar-item">
           <Link to="home" className="sidebar-link">Home</Link>
         </li>
-        <li className="list-group-item">
+        <li className="sidebar-item">
           <Link to="contacts" className="sidebar-link">Contacts</Link>
         </li>
       </ul>

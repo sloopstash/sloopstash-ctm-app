@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes';
-import { AuthProvider } from './context/AuthContext';  // Import the AuthProvider
-import { ContactsProvider } from './context/ContactsContext'; // Import the ContactsProvider
-import ForceLogoutPopup from './components/ForceLogoutPopup'; // Import the ForceLogoutPopup component
+import { AuthProvider } from './context/AuthContext';
+import { ContactsProvider } from './context/ContactsContext';
+import ForceLogoutPopup from './components/ForceLogoutPopup';
 
 const App = () => {
   return (
@@ -19,5 +19,3 @@ const App = () => {
 };
 
 export default App;
-
-
