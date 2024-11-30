@@ -1,28 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+  import React from 'react';
+  import { Link } from 'react-router-dom';
+  import { useAuth } from '../../context/AuthContext'; 
+  import { formatUsername } from '../../utils/formatUsername'; 
+  import '../../styles/header.scss';
 
-const Header = React.memo(({ onLogout }) => {
-  return (
-    <div className="header">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="profile">Profile</Link>
-              </li>
-              <li className="nav-item">
-                <button onClick={onLogout} className="nav-link btn btn-link" style={{ color: 'black' }}>Logout</button>
-              </li>
-            </ul>
+  const Header = React.memo(({ onLogout }) => {
+    const { user } = useAuth(); 
+
+    return (
+      <div className="header">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container-fluid">
+            <button 
+              className="navbar-toggler" 
+              type="button" 
+              data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav ms-auto">
+                {user ? (
+                  <li className="nav-item">
+                    <span className="nav-link">
+                      Welcome, <span className="highlighted-username">{formatUsername(user.name)}</span>
+                    </span>
+                  </li>
+                ) : (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </li>
+                )}
+                <li className="nav-item">
+                  <button onClick={onLogout} className="nav-link btn btn-link" style={{ color: 'black' }}>Logout</button>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </div>
-  );
-});
+        </nav>
+      </div>
+    );
+  });
 
-export default Header;
+  export default Header;

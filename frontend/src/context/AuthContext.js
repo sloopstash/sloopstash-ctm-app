@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-
 // Create the AuthContext
 const AuthContext = createContext();
 
@@ -12,27 +11,27 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem('token') || null);
   const [isTokenExpired, setIsTokenExpired] = useState(false);
 
+  // Decodes the JWT token and gets the expiration time
   const getExpirationTime = (token) => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decode JWT token
-      return decodedToken.exp * 1000; // Token's expiration is in seconds
+      return decodedToken.exp * 1000; // Token's expiration time is in seconds, so convert to milliseconds
     } catch (error) {
       console.error('Error decoding token:', error);
       return null;
     }
   };
-
   // This function will check if the token is expired
   const checkTokenExpiration = () => {
-    if (!token) return;  
-    const expirationTime = getExpirationTime(token); 
-    if (!expirationTime) return;  
-    
-    const currentTime = Date.now(); 
-    
+    if (!token) return;
+    const expirationTime = getExpirationTime(token); // Get expiration time from the token
+    if (!expirationTime) return;
+
+    const currentTime = Date.now();
+
     if (currentTime >= expirationTime) {
-      setIsTokenExpired(true);
-      logout(); 
+      setIsTokenExpired(true); // Set token as expired
+      logout();
     } else {
       setIsTokenExpired(false); 
     }
@@ -41,24 +40,24 @@ export const AuthProvider = ({ children }) => {
   // Only run the expiration check on token change
   useEffect(() => {
     if (token) {
-      checkTokenExpiration(); 
+      checkTokenExpiration();
     }
-  }, [token]);  
+  }, [token]);
 
   const login = (userData, token) => {
     const expirationTime = getExpirationTime(token);
     setUser(userData);
     setToken(token);
-    setIsTokenExpired(false); 
+    setIsTokenExpired(false);
     localStorage.setItem('user', JSON.stringify(userData));
     localStorage.setItem('token', token);
-    localStorage.setItem('tokenExpirationTime', expirationTime); 
+    localStorage.setItem('tokenExpirationTime', expirationTime);
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
-    setIsTokenExpired(true); 
+    setIsTokenExpired(true); // Mark token as expired
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('tokenExpirationTime');

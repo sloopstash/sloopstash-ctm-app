@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContacts } from '../../context/ContactsContext';
+import { validateName, validatePhone } from '../../utils/validation';
 import '../../styles/createContact.scss'; 
 
 const ContactForm = () => {
   const { id } = useParams(); 
   const [contact, setContact] = useState({ name: '', phone: '' });
   const [isSubmitting, setIsSubmitting] = useState(false); 
+  const [error, setError] = useState({ name: '', phone: '' }); 
   const { handleCreateContact, handleUpdateContact, contacts, successMessage, errorMessage } = useContacts();
   const navigate = useNavigate();
 
@@ -19,20 +21,38 @@ const ContactForm = () => {
     }
   }, [id, contacts]); 
 
-  useEffect(() => {
-    console.log('Success Message:', successMessage);
-    console.log('Error Message:', errorMessage);
-  }, [successMessage, errorMessage]);
+  const validateForm = () => {
+    let formValid = true;
+    const newError = { name: '', phone: '' };
+    const nameError = validateName(contact.name);
+    if (nameError) {
+      newError.name = nameError;
+      formValid = false;
+    }
+    const phoneError = validatePhone(contact.phone);
+    if (phoneError) {
+      newError.phone = phoneError;
+      formValid = false;
+    }
+    setError(newError);
+    return formValid;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     setIsSubmitting(true); 
     try {
       if (id) {
-        await handleUpdateContact(id, contact);  // Update the contact
+        // Updating existing contact
+        await handleUpdateContact(id, contact);
       } else {
-        await handleCreateContact(contact);  // Create new contact
+        // Creating new contact
+        await handleCreateContact(contact);
       }
+
       setTimeout(() => {
         setIsSubmitting(false);  
         navigate('/dashboard/contacts'); 
@@ -44,9 +64,9 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="create-contact-page">
+    <div className="contact-form-container">
       <div className="contact-card">
-        <h2>{id ? 'Edit Contact' : 'Create Contact'}</h2>
+        <h2 className="form-title">{id ? 'Edit Contact' : 'Create Contact'}</h2>
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="form-group">
             <label htmlFor="name">Full Name</label>
@@ -56,8 +76,8 @@ const ContactForm = () => {
               value={contact.name}
               className="form-control"
               onChange={(e) => setContact({ ...contact, name: e.target.value })}
-              required
             />
+            {error.name && <div className="error-message">{error.name}</div>}
           </div>
           <div className="form-group">
             <label htmlFor="phone">Phone</label>
@@ -67,29 +87,30 @@ const ContactForm = () => {
               value={contact.phone}
               className="form-control"
               onChange={(e) => setContact({ ...contact, phone: e.target.value })}
-              required
             />
+            {error.phone && <div className="error-message">{error.phone}</div>}
           </div>
-          <button
-            onClick={() => navigate('/dashboard/create-contact')}
-            className="btn btn-outline-primary me-2"
-            disabled={isSubmitting}
+          <div className="buttonSection">
+            <button
+              type="submit"
+              className="btn btn-custom"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting...' : (id ? 'Update Contact' : 'Create Contact')}
+            </button>
 
-          >
-            {isSubmitting ? 'Submitting...' : (id ? 'Update ' : 'Submit')}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => navigate(-1)}              
-            className="btn btn-outline-secondary"
-          >
-            Go Back
-          </button>
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="btn btn-secondary"
+            >
+              Go Back
+            </button>
+          </div>
         </form>
       </div>
     </div>
-  );
+  );  
 };
 
 export default ContactForm;

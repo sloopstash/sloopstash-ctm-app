@@ -1,38 +1,31 @@
-// Variables for reusable values
-$primary-color: #0072ff;
-$secondary-color: #00c6ff;
-$error-bg-color: #f8d7da;
-$error-text-color: #721c24;
-$text-color: #495057;
-$box-shadow-color: rgba(0, 0, 0, 0.1);
+@import 'variables';
 
-// Body styles
 body {
   height: 100vh;
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: $font-family;
+  background-color: #f4f6fc;
 }
 
-// Card styles
-.card {
+.signup-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   box-shadow: 0 10px 15px $box-shadow-color;
-  padding: 20px;
+  padding: 25px;
   background-color: #ffffff;
-  opacity: 0.9;
-  
+  opacity: 0.95;
+  border-radius: $border-radius;
+
   &-title {
-    color: $primary-color;
-    font-size: 1.75rem;
-    font-weight: bold;
+    color: #333;
+    font-size: 1.5rem;
     text-align: center;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
 }
 
-// Form styles
 .form-label {
   font-size: 1rem;
   color: $text-color;
@@ -40,50 +33,45 @@ body {
 
 .form-control {
   border: 1px solid $primary-color;
-  padding: 12px 15px;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  padding: $input-padding;
+  font-size: 1.1rem;
   box-shadow: none;
+  border-radius: $border-radius;
 
   &:focus {
     border-color: $secondary-color;
-    box-shadow: 0 0 5px rgba(0, 198, 255, 0.8);
+    box-shadow: 0 0 8px rgba(0, 198, 255, 0.8);
     outline: none;
   }
-  
-  &.compact {
-    padding: 10px;
-  }
 }
 
-// Error messages
-.alert-danger {
-  background-color: $error-bg-color;
-  color: $error-text-color;
-  padding: 10px;
-  font-size: 1rem;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-// Links
-.text-decoration-none {
-  color: $primary-color;
-  text-decoration: none;
-  text-align: center;
-  display: block;
+.btn-custom {
+  background: linear-gradient(90deg, $primary-color, lighten($primary-color, 10%));
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: $border-radius;
+  padding: 14px;
+  border: none;
+  transition: background-color 0.3s, transform 0.2s;
 
   &:hover {
-    text-decoration: underline;
+    background: linear-gradient(90deg, $primary-color, lighten($primary-color, 15%));
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
   }
 }
 
-// Form layout
-.form-group.row {
-  margin-bottom: 15px;
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }
 
-.col-form-label {
-  text-align: left;
-  font-weight: bold;
+.inputGroup {
+  padding-bottom: 1.5rem;
 }
