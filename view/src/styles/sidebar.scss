@@ -1,0 +1,52 @@
+@import 'variables';
+
+.sidebar {
+  width: $sidebar-width;
+  background-color: $primary-bg-color;
+  color: $text-color;
+  position: fixed;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 0 5px $header-shadow-color;
+  z-index: 100;
+
+  .sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  .sidebar-menu {
+    padding-left: 0;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sidebar-item {
+      width: 100%;
+      margin: 10px 0;
+      text-align: center;
+
+      .sidebar-link {
+        display: block;
+        padding: 12px 20px;
+        color: $text-color;
+        font-size: 1.2rem;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        width: 100%;
+
+        &:hover {
+          background-color: $hover-bg-color;
+          color: $hover-text-color;
+        }
+      }
+    }
+  }
+}
