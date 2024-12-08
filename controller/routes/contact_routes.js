@@ -1,6 +1,6 @@
 const express = require('express');
-const contactController = require('../controller/contact_controller');
-const verifyToken = require('../helper/middlewares/auth_middleware'); 
+const contactController = require('../contact_controller');
+const verifyToken = require('../../helper/middlewares/auth_middleware'); 
 
 const router = express.Router();
 

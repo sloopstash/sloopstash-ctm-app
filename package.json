@@ -2,10 +2,10 @@
     "name": "ctm-app-backend",
     "version": "1.0.0",
     "description": "Sloopstash CTM App Backend",
-    "main": "server.js",
+    "main": "init.js",
     "scripts": {
-        "start": "node server.js",
-        "dev": "nodemon server.js"
+        "start": "node init.js",
+        "dev": "nodemon init.js"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
