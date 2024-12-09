@@ -2,7 +2,7 @@
   import { Link } from 'react-router-dom';
   import { useAuth } from '../../context/auth_context'; 
   import { formatUsername } from '../../utils/format_username'; 
-  import '../../styles/header.scss';
+  import '../../asset/css/header.scss';
 
   const Header = React.memo(({ onLogout }) => {
     const { user } = useAuth(); 

@@ -81,3 +81,5 @@ export const ContactsProvider = ({ children }) => {
 };
 
 export const useContacts = () => useContext(ContactsContext);
+
+export default ContactsContext;

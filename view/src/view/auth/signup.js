@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiPost } from '../../services/api';
+import { apiPost } from '../../services/axios_http';
 import AuthContext from '../../context/auth_context';
-import { validateName, validateEmail, validatePassword } from '../../utils/validation';  // Import validation functions
-import '../../styles/auth.scss';
+import { validateName, validateEmail, validatePassword } from '../../utils/validation';
+import '../../asset/css/auth.scss';
 
-// Import Logo component if needed
 import LogoComponent from '../../components/layout/logo';
 
 const Signup = () => {

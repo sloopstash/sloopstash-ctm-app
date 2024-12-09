@@ -10,7 +10,7 @@ const ForceLogoutPopup = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if token is expired and show modal if necessary
+    // Check if token is expired enforce this modal to logout
     if (isTokenExpired && location.pathname !== '/login') {
       setShowModal(true);
     } else if (location.pathname === '/login') {

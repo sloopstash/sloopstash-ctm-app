@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/layout/sidebar';
 import Header from '../components/layout/header';
 import MainContent from '../components/layout/main_content';
-import '../styles/dashboard.scss';
+import '../asset/css/dashboard.scss';
 
 const Dashboard = () => {
   const navigate = useNavigate();

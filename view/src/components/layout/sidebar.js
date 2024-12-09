@@ -1,9 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { sidebarConfig } from '../../helper/sidebar_config';
 import LogoComponent from './logo';
-import '../../styles/sidebar.scss';
+import '../../asset/css/sidebar.scss';
 
 const Sidebar = React.memo(() => {
+  const location = useLocation();
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -12,12 +16,21 @@ const Sidebar = React.memo(() => {
         </div>
       </div>
       <ul className="sidebar-menu">
-        <li className="sidebar-item">
-          <Link to="home" className="sidebar-link">Home</Link>
-        </li>
-        <li className="sidebar-item">
-          <Link to="contacts" className="sidebar-link">Contacts</Link>
-        </li>
+        {sidebarConfig.map(({ label, path, icon }) => (
+          <li
+            key={path}
+            className={`sidebar-item ${
+              location.pathname === path ? 'active' : ''
+            }`}
+          >
+            <Link to={path} className="sidebar-link">
+              <div className="sidebar-item-content">
+                <FontAwesomeIcon icon={icon} className="sidebar-icon" />
+                <span className="sidebar-label">{label}</span>
+              </div>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContacts } from '../../context/contact_context'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/list_contact.scss';
+import '../../asset/css/list_contact.scss';
 import Alert from '../../utils/alert';
 
 const ListContacts = () => {

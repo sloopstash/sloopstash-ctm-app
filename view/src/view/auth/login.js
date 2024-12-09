@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiPost } from '../../services/api';
+import { apiPost } from '../../services/axios_http';
 import AuthContext from '../../context/auth_context';
-import { validateEmail, validatePassword } from '../../utils/validation'; // Import validation functions
-import '../../styles/auth.scss'; // Import your custom SCSS
+import { validateEmail, validatePassword } from '../../utils/validation';
+import '../../asset/css/auth.scss'; 
 
 // Import the Logo Component
 import LogoComponent from '../../components/layout/logo';

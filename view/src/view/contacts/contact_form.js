@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContacts } from '../../context/contact_context';
 import { validateName, validatePhone } from '../../utils/validation';
-import '../../styles/create_contact.scss'; 
+import '../../asset/css/create_contact.scss'; 
 
 const ContactForm = () => {
   const { id } = useParams(); 

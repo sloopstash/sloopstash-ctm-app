@@ -2,57 +2,49 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './private_route';
 import PublicRoute from './public_route';
-import Signup from '../pages/auth/signup';
-import Login from '../pages/auth/login';
-import ContactForm from '../pages/contacts/contact_form';
-import ListContacts from '../pages/contacts/list_contacts';
-import Home from '../pages/home/home';
-import Dashboard from '../pages/dashboard';
+import { routesConfig } from '../helper/route_config';
 
 const AppRoutes = () => {
-  return (
-    <Routes>
-      {/* Public Routes */}
-      <Route
-        path="/login"
-        element={
-          <PublicRoute>
-            <Login />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/signup"
-        element={
-          <PublicRoute>
-            <Signup />
-          </PublicRoute>
-        }
-      />
+  const renderRoutes = (routes) =>
+    routes.map(({ path, element: Element, type, children }) => {
+      if (type === "public") {
+        return (
+          <Route
+            key={path}
+            path={path}
+            element={
+              <PublicRoute>
+                <Element />
+              </PublicRoute>
+            }
+          />
+        );
+      }
 
-      {/* Private Routes - Dashboard Layout */}
-      <Route
-        path="/dashboard/*"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      >
-        <Route index element={<Navigate to="home" />} />
-        <Route path="home" element={<Home />} />
-        <Route path="contacts" element={<ListContacts />} />
-        <Route path="create-contact/:id?" element={<ContactForm />} />
-        <Route path="edit-contact/:id" element={<ContactForm />} />
-      </Route>
+      if (type === "private") {
+        return (
+          <Route
+            key={path}
+            path={path}
+            element={
+              <PrivateRoute>
+                <Element />
+              </PrivateRoute>
+            }
+          >
+            {children && renderRoutes(children)}
+          </Route>
+        );
+      }
 
-      {/* Catch-all Route */}
-      <Route
-        path="*"
-        element={<Navigate to="/login" />}
-      />
-    </Routes>
-  );
+      if (type === "catchAll") {
+        return <Route key={path} path={path} element={<Element />} />;
+      }
+
+      return <Route key={path} path={path} element={<Element />} />;
+    });
+
+  return <Routes>{renderRoutes(routesConfig)}</Routes>;
 };
 
 export default AppRoutes;
