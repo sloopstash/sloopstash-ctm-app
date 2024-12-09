@@ -5,17 +5,16 @@ import AuthContext from '../../context/auth_context';
 import { validateEmail, validatePassword } from '../../utils/validation';
 import '../../asset/css/auth.scss'; 
 
-// Import the Logo Component
 import LogoComponent from '../../components/layout/logo';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [error, setError] = useState({ email: '', password: '' }); // Store validation errors
+  const [error, setError] = useState({ email: '', password: '' }); 
   const navigate = useNavigate();
 
-  const { login } = useContext(AuthContext); // Use context to access login function
+  const { login } = useContext(AuthContext); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

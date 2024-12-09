@@ -20,7 +20,6 @@ const AppRoutes = () => {
           />
         );
       }
-
       if (type === "private") {
         return (
           <Route
@@ -36,14 +35,11 @@ const AppRoutes = () => {
           </Route>
         );
       }
-
       if (type === "catchAll") {
         return <Route key={path} path={path} element={<Element />} />;
       }
-
       return <Route key={path} path={path} element={<Element />} />;
     });
-
   return <Routes>{renderRoutes(routesConfig)}</Routes>;
 };
 

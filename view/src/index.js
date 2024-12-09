@@ -6,7 +6,7 @@ import './asset/css/main.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// Temporarily remove React.StrictMode for testing - (While develop the from local it should should avoid unnecessary rerender)
+// Temporarily remove React.StrictMode for testing - (While develop the app from local, it should prevent unnecessary rerender)
 // root.render(<App />);
 
 // Adding React.StrictMode for prod (Unnecessary rerender should not happen in prod mode)

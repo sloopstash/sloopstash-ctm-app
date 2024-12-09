@@ -12,7 +12,7 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [error, setError] = useState({ name: '', email: '', password: '' }); // Store validation errors
+  const [error, setError] = useState({ name: '', email: '', password: '' });
   const navigate = useNavigate();
 
   const { login } = useContext(AuthContext);
@@ -48,7 +48,6 @@ const Signup = () => {
           <LogoComponent width="120px" height="120px" />
         </div>
 
-        {/* Title - Slightly adjusted for a cleaner look */}
         <p className="signup-card-title">CTM App SignUp</p>
 
         {/* Error Message */}
