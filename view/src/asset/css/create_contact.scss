@@ -1,0 +1,121 @@
+@import 'variables';
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: $font-family;
+  overflow: hidden;
+}
+
+.contact-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f6fc;
+}
+
+.contact-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: $border-radius;
+  box-shadow: 0 10px 20px $box-shadow-color;
+  opacity: 0.95;
+
+  .form-title {
+    font-size: 1.5rem;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+
+    label {
+      font-size: 1rem;
+      color: $text-color;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: $input-padding;
+      border: 1px solid #ccc;
+      border-radius: $border-radius;
+      font-size: 1rem;
+      margin-top: 8px;
+      transition: border 0.3s ease;
+      position: relative;
+
+      &:focus {
+        border-color: $secondary-color;
+        box-shadow: 0 0 8px rgba(0, 198, 255, 0.8);
+        outline: none;
+      }
+    }
+
+    .error-message {
+      position: absolute;
+      bottom: -1.5rem;
+      left: 0;
+      color: red;
+      font-size: 0.875rem;
+    }
+  }
+
+  .btn-custom {
+    background: linear-gradient(90deg, $primary-color, lighten($primary-color, 10%));
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: $border-radius;
+    width: 100%;
+    transition: background 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background: linear-gradient(90deg, $primary-color, lighten($primary-color, 15%));
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .buttonSection {
+    margin-top: 2rem;
+  }
+
+  .btn-secondary {
+    background-color: $secondary-color;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: $border-radius;
+    width: 100%;
+    border: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: lighten($secondary-color, 10%);
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}

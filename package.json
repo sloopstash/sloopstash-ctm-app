@@ -1,0 +1,21 @@
+{
+    "name": "ctm-app-backend",
+    "version": "1.0.0",
+    "description": "Sloopstash CTM App Backend",
+    "main": "init.js",
+    "scripts": {
+        "start": "node init.js",
+        "dev": "nodemon init.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.2",
+        "mongodb": "^4.8.1",
+        "mongoose": "^8.8.2"
+    },
+    "author": "Rajesh D",
+    "license": "ISC"
+}
