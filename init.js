@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config(); 
+const path = require('path');
+require('dotenv').config();
 
 const authRoutes = require('./controller/routes/auth_routes');
 const contactRoutes = require('./controller/routes/contact_routes');
@@ -15,9 +16,20 @@ app.use(express.json());
 // Connect to MongoDB using the common module
 connectDB();
 
-// Define your routes
+// Define routes for API
 app.use('/auth', authRoutes);
 app.use('/contacts', contactRoutes);
+
+// Serve React build files
+if (process.env.NODE_ENV === 'production') {
+  // Serve the static files from the React app (built version)
+  app.use(express.static(path.join(__dirname, 'view/build')));
+
+  // The "catch-all" handler: when a request doesn't match any API routes, serve the React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view/build', 'index.html'));
+  });
+}
 
 // Health check route
 app.get('/health', (req, res) => {
